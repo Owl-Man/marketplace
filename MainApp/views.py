@@ -18,6 +18,7 @@ def home(request):
     context = {'products': products}
     return render(request, 'menu.html', context)
 
+
 # def category(request):
 
 
@@ -26,7 +27,8 @@ def product_detail(request, pk):
     product = get_object_or_404(Product, pk=pk)
 
     context = {"product": product}
-    return render(request, 'shop-page.html',context)
+    return render(request, 'shop-page.html', context)
+
 
 # def cart(request):
 #     user = request.user
@@ -43,15 +45,17 @@ def product_detail(request, pk):
 def cart(request):
     user = request.user
     product_id = request.GET.get('prod_id')
-    product = Product.objects.get(id = product_id)
-    Cart(user = user, product = product).save()
+    product = Product.objects.get(id=product_id)
+    Cart(user=user, product=product).save()
     return redirect('/')
+
 
 def show_cart(request):
     user = request.user
-    cart = Cart.objects.filter(user = user)
-    l = cart
-    return print(l)
+    cart = Cart.objects.filter(user=user)
+    context = {"cart": cart, "user": user}
+    return render(request, 'menu.html', context=context)
+
 
 def register(request):
     if request.method == 'POST':
@@ -79,9 +83,7 @@ def user_login(request):
     return render(request, 'login.html', {'form': form})
 
 
-
 @login_required
 def profile(request):
     user = request.user
     return render(request, 'menu.html', {'user': user})
-
