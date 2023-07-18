@@ -25,13 +25,14 @@ from django.contrib.auth.views import LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name = 'home'),
-    path('home/<int:pk>', views.product_detail, name = 'product_detail'),
+    path('<int:pk>/', views.product_detail, name = 'product_detail'),
     path('registration/', views.register),
     path('login/', views.user_login, name='login'),
     path(r'^logout/$', LogoutView.as_view(), {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
     path('profile/', views.profile, name='profile'),
-    path('add-to-cart/', views.cart, name = 'add-to-cart'),
-    path('checkout/', views.show_cart, name = 'checkout')
+    path('add-to-cart/', views.add_to_cart, name = 'add-to-cart'),
+    path('cart/', views.show_cart, name = 'checkout'),
+    path('<slug:val>/', views.CategoryView.as_view(), name = 'category')
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

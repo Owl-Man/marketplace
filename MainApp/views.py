@@ -9,16 +9,32 @@ from .models import *
 
 
 @login_required(login_url='login')
-def home(request):
+def home(request, category_slug= None):
+    categories = None
+    products = None
+    html_code = """<div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="/images/sale11.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/sale22.png" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="/images/sale33.png" class="d-block w-100" alt="...">
+                </div>
+            </div>"""
+    if category_slug != None:
+        categories = get_object_or_404(Category, category_slug)
     if 'q' in request.GET:
         q = request.GET['q']
         products = Product.objects.filter(name__icontains=q)
+        context = {'products': products}
     else:
         products = Product.objects.all()
-    context = {'products': products}
+        context = {'products': products, 'html_code': html_code}
     return render(request, 'menu.html', context)
 
-# def category(request):
+
 
 
 @login_required(login_url='login')
@@ -40,7 +56,7 @@ def product_detail(request, pk):
 #     context = {'products': products}
 #     return render(request, 'menu.html', context)
 
-def cart(request):
+def add_to_cart(request):
     user = request.user
     product_id = request.GET.get('prod_id')
     product = Product.objects.get(id = product_id)
@@ -50,8 +66,7 @@ def cart(request):
 def show_cart(request):
     user = request.user
     cart = Cart.objects.filter(user = user)
-    l = cart
-    return print(l)
+    return render(request,'cart.html', locals())
 
 def register(request):
     if request.method == 'POST':
@@ -78,6 +93,10 @@ def user_login(request):
         form = LoginForm()
     return render(request, 'login.html', {'form': form})
 
+class CategoryView(View):
+    def get(self, request, val):
+        products = Product.objects.filter(category = val)
+        return render(request, 'menu.html', locals())
 
 
 @login_required
