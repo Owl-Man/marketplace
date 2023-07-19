@@ -198,13 +198,14 @@
     <div class="container dark-grey-text mt-5">
         <div class="row wow fadeIn">
             <div class="col-md-4 mb-4">
+                <h2 class="section_title">{{product.name}}</h2>
                 <img src="{{product.image.url}}" alt="{{product.name}}" class="img-fluid">
 
                 <div class = 'price'>
-                    <center><p class="lead font-weight-bold">{{product.name}}</p></center>
+                    <center><p class="lead font-weight-bold"></p></center>
                 </div>
             </div>
-            <div class="col-md-6 mb-4">
+            <div class="col-md-7 mb-5">
                 <div class="p-4">
                     <div class="mb-3">
                         <div class="form-group">
@@ -225,8 +226,10 @@
                     </div>
                     <div class="form-group-card">
                         <form action = '/add-to-cart' class = 'd-line'>
-                            <input type="hidden" name = 'prod_id' value = {{product.id}}>
-                            <input type="submit" value="Добавить в корзину">
+                            <br>
+                                <input type="hidden" name = 'prod_id' value = {{product.id}}>
+                                <input type="submit" value="Добавить в корзину">
+                            </br>
                         </form>
                     </div>
                 </div>
