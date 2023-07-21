@@ -29,9 +29,9 @@
                 <!-- Корзина -->
                 <li class="nav-item">
                     <a class="nav-link"
-                       href="cart/"
+                       href="http://127.0.0.1:8000/cart/"
                        data-bs-toggle="modal"
-                       data-bs-target="#modal-cart">
+                       data-bs-target="cart/">
                         <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512">
                             <path d="M0 24C0 10.7 10.7 0 24 0H69.5c22 0 41.5 12.8 50.6 32h411c26.3 0 45.5 25 38.6 50.4l-41 152.3c-8.5 31.4-37 53.3-69.5 53.3H170.7l5.4 28.5c2.2 11.3 12.1 19.5 23.6 19.5H488c13.3 0 24 10.7 24 24s-10.7 24-24 24H199.7c-34.6 0-64.3-24.6-70.7-58.5L77.4 54.5c-.7-3.8-4-6.5-7.9-6.5H24C10.7 48 0 37.3 0 24zM128 464a48 48 0 1 1 96 0 48 48 0 1 1 -96 0zm336-48a48 48 0 1 1 0 96 48 48 0 1 1 0-96z"/>
                         </svg>
@@ -129,7 +129,7 @@
                                 </div>
                                 <div class="modal-anketa">
                                     <div class="my-anketa">
-                                        <img src="images/ава.jpg" class="img-thumbnail" alt="">
+                                        <img src="/images/ава.jpg" class="img-thumbnail" alt="">
                                     </div>
                                     <div class="my-anketa-text">
                                         <p>Имя: {{ user.first_name }}</p>
@@ -142,34 +142,7 @@
 
                                                 <a href ="{% url 'logout' %}">Выйти</a>
                                     </div>
-                                    <div class="history">
-                                        <table class="table">
-                                            <thead>
-                                            <tr>
-                                                <h4>Мои заказы</h4>
-                                                <th scope="col">Товар</th>
-                                                <th scope="col">Стоимость</th>
-                                            </tr>
-                                            </thead>
-                                            <tbody>
-                                            <tr>
-                                                <td><img src="images/products/6309540193.webp" alt=""></td>
-                                                <td>245р</td>
 
-                                            </tr>
-                                            <tr>
-                                                <td><img src="images/products/ложка.webp" alt=""></td>
-                                                <td>175р</td>
-                                            </tr>
-                                            <tr>
-                                                <td><img src="images/products/носки.jpg" alt=""></td>
-                                                <td>245р</td>
-                                            </tr>
-                                            </tbody>
-                                        </table>
-                                    </div>
-
-                                </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" style="background-color: #cbc1d2;"
                                             data-bs-dismiss="modal">Закрыть
@@ -208,28 +181,28 @@
                 <nav class="catalog-nav">
                     <ul class="catalog-nav_wrapper">
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn is-active" type="button"><a href = "/">Все</button>
+                            <button class="catalog-nav_btn is-active" type="button"><a href = "/" style="text-decoration: none;">Все</button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'CT' %}">Одежда</a></button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'CT' %}" style="text-decoration: none;">Одежда</a></button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'SH' %}">Обувь</button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'SH' %}" style="text-decoration: none;">Обувь</button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'H' %}">Дом и сад</button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'H' %}" style="text-decoration: none;">Дом и сад</button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'BH' %}">Красота и здоровье</button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'BH' %}" style="text-decoration: none;">Красота и здоровье</button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'FK' %}">Для детей</button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'FK' %}" style="text-decoration: none;">Для детей</button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'F' %}">Еда</button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'F' %}" style="text-decoration: none;">Еда</button>
                         </li>
                         <li class="catalog-nav_item">
-                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'ST' %}">Канцтовары</button>
+                            <button class="catalog-nav_btn" type="button"><a href = "{% url 'category' 'ST' %}" style="text-decoration: none;">Канцтовары</button>
                         </li>
 
                     </ul>
@@ -243,27 +216,17 @@
     <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-bs-ride="carousel"
          data-bs-interval="3000">
         <div class="carousel-indicators">
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
-                    aria-label="Slide 2"></button>
-            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
-                    aria-label="Slide 3"></button>
+            <a type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1"></a>
+            <a type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+                    aria-label="Slide 2"></a>
+            <a type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+                    aria-label="Slide 3"></a>
         </div>
-<!--     Спросить у Артёма-->
+
         {% if 'q' != None %}
             {{html_code|safe}}
-<!--            <div class="carousel-inner">-->
-<!--                <div class="carousel-item active">-->
-<!--                    <img src="/images/sale11.png" class="d-block w-100" alt="...">-->
-<!--                </div>-->
-<!--                <div class="carousel-item">-->
-<!--                    <img src="/images/sale22.png" class="d-block w-100" alt="...">-->
-<!--                </div>-->
-<!--                <div class="carousel-item">-->
-<!--                    <img src="/images/sale33.png" class="d-block w-100" alt="...">-->
-<!--                </div>-->
-<!--            </div>-->
+
         {% else %}
 
         {% endif %}

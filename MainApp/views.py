@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate, login, logout
 from .forms import LoginForm
 from django.contrib.auth.decorators import login_required
 from django.views import View
-from django.http import HttpResponse
+from django.http import JsonResponse
 from .models import *
 
 
@@ -66,7 +66,32 @@ def add_to_cart(request):
 def show_cart(request):
     user = request.user
     cart = Cart.objects.filter(user = user)
+    amount = 0
+    for p in cart:
+        value = p.quantity * p.product.cost
+        amount = amount + value
+    total_amount = amount
     return render(request,'cart.html', locals())
+
+# def remove_cart(request):
+#     if request.method == 'GET':
+#         prod_id = request.GET['prod_id']
+#         c = Cart.objects.get(Q(product = prod_id) & Q(user = request.user))
+#         c.delete
+#         user = request.user
+#         cart = Cart.objects.filter(user=user)
+#         amount = 0
+#         for p in cart:
+#             value = p.quantity * p.product.cost
+#             amount = amount + value
+#         total_amount = amount
+#         data = {
+#             'amount': amount,
+#             'total_amount': total_amount
+#         }
+#
+#         return JsonResponse(data)
+
 
 def register(request):
     if request.method == 'POST':
@@ -104,3 +129,10 @@ def profile(request):
     user = request.user
     return render(request, 'menu.html', {'user': user})
 
+def thx(request):
+    user = request.user
+    cart = Cart.objects.filter(user = user)
+    for c in cart:
+        c.delete()
+    #     4:53:55
+    return render(request, 'thx.html',locals())
